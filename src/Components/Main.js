@@ -9,6 +9,8 @@ import Home from "./Home/Home";
 import Products from "./Products/Products";
 import Footer from './Footer/Footer';
 import ProductDesc from "./Products/ProductDesc";
+import Cart from "./Cart/Cart";
+import Account from "./MyAccount/Account";
 import { baseUrl } from "./baseUrl";
 
 
@@ -33,6 +35,8 @@ function Main(props){
                     <Route exact path="/" component={Home} />
                     <Route exact path="/products" component={()=> <Products/>} />
                     <Route exact path="/products/:id" component={({match})=><ProductDesc id={match.params.id}/>} />
+                    <Route exact path="/cart" component={()=> <Cart/>} />
+                    <Route exact path="/account" component={()=> <Account/>} />
                     <Route path="*" component={() => <PageNotFound title="404 Page Not Found . . ." />} />
                     <Redirect to="/" />
                 </Switch>

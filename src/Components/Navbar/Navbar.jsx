@@ -40,10 +40,10 @@ function NavbarUI(props){
                         <NavDropdown title={<span className ="text-white">Shirish Pokhrel
                         
                         </span>} id="basic-nav-dropdown" className="my-auto">
-                            <NavDropdown.Item href=""><IoIcons.IoMdPerson/>  My Account</NavDropdown.Item>
-                            <NavDropdown.Item href=""><IoIcons.IoMdCart/>  My Cart</NavDropdown.Item>
+                            <NavDropdown.Item href=""><Link to="/Account" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdPerson/> My Account</Link></NavDropdown.Item>
+                            <NavDropdown.Item href=""><Link to="/Cart" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdCart/> Cart</Link> </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item className="text-danger" href="" ><RiIcons.RiLogoutBoxRLine/>  LogOut</NavDropdown.Item>
+                            <NavDropdown.Item className="text-danger" href="" onClick={() => { localStorage.removeItem('hamrovet-token'); window.location.reload(true); }} className="text-danger" style={{ }}><RiIcons.RiLogoutBoxRLine/>  LogOut</NavDropdown.Item>
                         </NavDropdown>
                         :
                             <>
