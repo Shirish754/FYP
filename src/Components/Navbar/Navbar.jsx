@@ -37,7 +37,10 @@ function NavbarUI(props){
                         <Link to="/" className="text-white my-auto text-decoration-none">Home</Link>
                         <Link to="/Products" className="text-white my-auto  text-decoration-none ms-2">Products</Link>
                         {localStorage.getItem('hamrovet-token')?
-                        <NavDropdown title={<span className ="text-white">Shirish Pokhrel
+                        <NavDropdown title={<span className ="text-white">
+                            {JSON.parse(localStorage.getItem('hamrovet-token')).userName }
+                            <img className="p-1 rounded-circle w-25" src={`https://ui-avatars.com/api/?background=ffffff&color=000000&name=${JSON.parse(localStorage.getItem('hamrovet-token')).userName}`}/>
+                            
                         
                         </span>} id="basic-nav-dropdown" className="my-auto">
                             <NavDropdown.Item href=""><Link to="/Account" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdPerson/> My Account</Link></NavDropdown.Item>
@@ -47,8 +50,8 @@ function NavbarUI(props){
                         </NavDropdown>
                         :
                             <>
-                            <button onClick={() => { setIsLoginOpen(true); }}className="btn btn fw-bold  ms-2" style={{ background: pageOffset >= 648 ? "#4f4f4f" : "#c8a97e", color: pageOffset <= 648 ? "#ffffff" : "#c8a97e"}}>Login</button>
-                            <button onClick={() => { setIsSignupOpen(true); }}className="btn btn fw-bold  ms-2" style={{ background: pageOffset >= 648 ? "#4f4f4f" : "#c8a97e", color: pageOffset <= 648 ? "#ffffff" : "#c8a97e"}}>Sign Up</button>
+                            <button onClick={() => { setIsLoginOpen(true); }}className="btn btn fw-bold  ms-2" style={{ background: pageOffset >= 648 ? "#2F80ED" : "#219653", color: pageOffset <= 648 ? "#ffffff" : "#ffffff"}}>Login</button>
+                            <button onClick={() => { setIsSignupOpen(true); }}className="btn btn fw-bold  ms-2" style={{ background: pageOffset >= 648 ? "#2F80ED" : "#219653", color: pageOffset <= 648 ? "#ffffff" : "#ffffff" }}>Sign Up</button>
                             </>
                         }
                         </Nav>

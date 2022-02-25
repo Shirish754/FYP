@@ -56,27 +56,35 @@ export default function Products(){
             <div>
                 <div style={{ overflowX: "hidden" }}>
                     <div
-                        className="d-flex flex-wrap col-12 justify-content-center align-items-center text-white"
+                        className="d-flex flex-wrap col-12 justify-content-center align-items-center text-white "
                         style={{
-                            height: "65vh",
+                            height: "60vh",
                             width: "100vw",
-                            backgroundImage: 'url("https://images.unsplash.com/photo-1486579735245-63fbd086823e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1576&q=80&fbclid=IwAR2IU01jtv1UCT3kaLBRFp5Zmsv9mjxFZAA__qShFXCshP4snyjHAwscUKc")',
+                            position:"relative",
+                            backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 20%, rgba(100, 51, 51, 0.6) 86%, rgba(51, 51, 51, 0.8) 100%),url("https://images.unsplash.com/photo-1486579735245-63fbd086823e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1576&q=80&fbclid=IwAR2IU01jtv1UCT3kaLBRFp5Zmsv9mjxFZAA__qShFXCshP4snyjHAwscUKc")',
                             backgroundColor: "#cccccc",
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
-                            backgroundSize: "cover"
+                            backgroundSize: "cover",
+
                         }}>
-                        <div className="text-center">
-                            <p className="small"><Link className="text-decoration-none text-white" to="/">Home </Link> /Products</p>
-                        </div>
-                        <div className="col-4 mb-3">
-                            <input className="form-control shadow" placeholder="Search Products . . ." value={''} onChange={(e) => {}} />
-                        </div>
+
+                       <div className="d-flex flex-column col-5">
+                            <div className="text-center">
+                                    <p className="small"><Link className="text-decoration-none text-white" to="/">Home </Link> /Products</p>
+                            </div>
+                            <h3 className="text-center">Find your perfect pet and<br/>livestock</h3>
+                            <div className=" d-flex">
+                            <input onChange={(e)=>{setSearchQuery(e.target.value);}} value={searchQuery} placeholder="Search Products . . ." className="form-control ms-2"/>
+                            <button className="btn-primary p-2">Search&nbsp;Now</button>
+                            </div>
+                       </div>
                     
                     </div>
                 </div>
                 <div className="my-5 pt-5">
                 <div className="container">
+                    
                     {searchQuery.length <= 0 ?
                         <div>
                             {categories.map((cat, index) => {

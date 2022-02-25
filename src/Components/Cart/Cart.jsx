@@ -1,12 +1,12 @@
 import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup'
-
+import {BsArrowLeft} from 'react-icons/bs'
 export default function Cart() {
   return <div>
    <div>
    <div style={{ overflowX: "hidden" }}>
                     <div
-                        className="d-flex flex-wrap col-12 justify-content-center align-items-center text-white"
+                        className="d-flex flex-wrap justify-content-center align-items-center text-white"
                         style={{
                             height: "40vh",
                             width: "100vw",
@@ -36,74 +36,85 @@ export default function Cart() {
                         
                       }}>
                         <div className='d-flex'>
-                          <div className='col-md-8 border border-dark p-4' style ={{backgroundColor:'#fff'}}>
-                            <div className='d-flex justify-content-between pb-3'>
+                          <div className='col-md-10 border border-dark p-4' style ={{backgroundColor:'#fff'}}>
+                            <div className='d-flex justify-content-between pb-3 border-bottom'>
                               <div> <h3><b>Shopping Cart</b></h3></div>
                               <div><p>No of items</p></div>
                             </div>
                             <div className=''>         
 
-                              <ListGroup horizontal >
-                                <ListGroup.Item> Picture</ListGroup.Item>
-                                <ListGroup.Item>
+                              <ListGroup horizontal className='border-bottom'>
+                                <ListGroup.Item  className='border-0'> Picture</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>
                                   <p>Category</p>
                                   <p>Product</p>
                                 </ListGroup.Item>
-                                <ListGroup.Item>Number calculation</ListGroup.Item>
-                                <ListGroup.Item>Price</ListGroup.Item>
-                                <ListGroup.Item>X</ListGroup.Item>
+                                <ListGroup.Item className='border-0 d-block my-auto'>
+                                  <div className='d-flex '>
+                                  <button className='w-50 m-1 border-0' style={{backgroundColor:'transparent'}}>-</button>
+                                   <p className='m-1 border p-2'> 9</p> 
+                                   <button className='w-50 m-1 border-0' style={{backgroundColor:'transparent'}}>+</button>
+                                   </div>
+                                </ListGroup.Item>
+                                <ListGroup.Item className='border-0'>Price</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>X</ListGroup.Item>
                               </ListGroup>
 
-                              <ListGroup horizontal >
-                                <ListGroup.Item> Picture</ListGroup.Item>
-                                <ListGroup.Item>
+                              <ListGroup horizontal className='border-bottom'>
+                                <ListGroup.Item  className='border-0'> Picture</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>
                                   <p>Category</p>
                                   <p>Product</p>
                                 </ListGroup.Item>
-                                <ListGroup.Item>Number calculation</ListGroup.Item>
-                                <ListGroup.Item>Price</ListGroup.Item>
-                                <ListGroup.Item>X</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>Number calculation</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>Price</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>X</ListGroup.Item>
                               </ListGroup>
 
-                              <ListGroup horizontal >
-                                <ListGroup.Item> Picture</ListGroup.Item>
-                                <ListGroup.Item>
+                              <ListGroup horizontal className='border-bottom'>
+                                <ListGroup.Item  className='border-0'> Picture</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>
                                   <p>Category</p>
                                   <p>Product</p>
                                 </ListGroup.Item>
-                                <ListGroup.Item>Number calculation</ListGroup.Item>
-                                <ListGroup.Item>Price</ListGroup.Item>
-                                <ListGroup.Item>X</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>Number calculation</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>Price</ListGroup.Item>
+                                <ListGroup.Item className='border-0'>X</ListGroup.Item>
                               </ListGroup>
+
+                              
+
+                              
             
                             </div>
-                            <div className='pt-2'>
-                              <p>Back to Shop</p>
+                            
+                            <div className='pt-5'>
+                              <p> <BsArrowLeft/> Back to Shop</p>
                             </div>
                           </div>
-                          <div className='col-md-4 border border-dark p-4 ' style={{backgroundColor:'#dedede'}}>
-                            <div className='p-2'><h4>Summary</h4></div>
+                          <div className='col-md-5 border border-dark p-4  ' style={{backgroundColor:'#dedede'}}>
+                            <div className='p-2 border-bottom border-dark'><h4>Summary</h4></div>
                           <div>
-                            <div>
+                            <div className='d-flex justify-content-between p-2'>
                               <div className='d-flex justify-content-between'>
-                                <div>Items</div>
-                                <div>Total Items</div>
-                              </div>
-                              <div>Initial Price</div>
+                                <div className='m-1'>Items</div>
+                                <div className='m-1'>3 </div>
+                              </div >
+                              <div className='m-1'>Initial Price</div>
                             </div>
                             <div>
-                              <div>
+                              <div className='border-bottom border-dark'>
                                 <h3>Shipping</h3>
-                                <p className='border border-dark'>Shippig delivery Charge</p>
+                                <p className='border border-dark bg-white p-1'>Shipping delivery Charge</p>
                               </div>
                             </div>
                           </div>
-                            <div className='d-flex justify-content-between'>
+                            <div className='d-flex justify-content-between pt-2'>
                               <p>Total Price</p>
-                              <p>Initial Price + Shipping Cost</p>
+                              <p>100</p>
                             </div>
                             <div>
-                              <button className='btn btn-primary'>Checkout</button>
+                              <button className='btn btn-dark' style={{width:'100%'}}>Checkout</button>
                             </div>
                           </div>
                         </div>
