@@ -34,19 +34,19 @@ function NavbarUI(props){
                         <Navbar.Toggle className="bg-light" aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav" >
                         <Nav className="ms-auto">
-                        <Link to="/" className="text-white my-auto text-decoration-none">Home</Link>
+                        <Link to="/" className="text-white my-auto text-decoration-none">Home </Link>
                         <Link to="/Products" className="text-white my-auto  text-decoration-none ms-2">Products</Link>
                         {localStorage.getItem('hamrovet-token')?
                         <NavDropdown title={<span className ="text-white">
                             {JSON.parse(localStorage.getItem('hamrovet-token')).userName }
-                            <img className="p-1 rounded-circle w-25" src={`https://ui-avatars.com/api/?background=ffffff&color=000000&name=${JSON.parse(localStorage.getItem('hamrovet-token')).userName}`}/>
+                            <img className="ps-1 rounded-circle "style={{ height:"3vh"}} src={`https://ui-avatars.com/api/?background=ffffff&color=000000&name=${JSON.parse(localStorage.getItem('hamrovet-token')).userName}`}/>
                             
                         
                         </span>} id="basic-nav-dropdown" className="my-auto">
                             <NavDropdown.Item href=""><Link to="/Account" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdPerson/> My Account</Link></NavDropdown.Item>
                             <NavDropdown.Item href=""><Link to="/Cart" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdCart/> Cart</Link> </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item className="text-danger" href="" onClick={() => { localStorage.removeItem('hamrovet-token'); window.location.reload(true); }} className="text-danger" style={{ }}><RiIcons.RiLogoutBoxRLine/>  LogOut</NavDropdown.Item>
+                            <NavDropdown.Item className="text-danger" href="" onClick={() => { localStorage.removeItem('hamrovet-token'); window.location.reload(true); }} style={{ }}><RiIcons.RiLogoutBoxRLine/>  LogOut</NavDropdown.Item>
                         </NavDropdown>
                         :
                             <>

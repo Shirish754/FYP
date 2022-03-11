@@ -3,10 +3,12 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import {
     Link
 } from "react-router-dom";
+import FeaturedCarousel from "./FeatureCarousel";
 
 function Home(props) {
     return (
         <div>
+                {/* <FeaturedCarousel/> */}
             <section>
                 <div style={{ overflowX: "hidden" }}>
                     <div className="d-flex flex-wrap col-12 justify-content-center align-items-center text-white "
@@ -78,10 +80,10 @@ function Home(props) {
 
 
             <section className="my-3 py-5">
-                <div className="container col-12 d-flex flex-wrap">
+                <div className="container col-12 d-flex flex-wrap fade-in">
                     <div className="col-12 col-md-6 d-flex justify-content-between">
                         <div style={{ height: 380, width: 622, overflow: "hidden" }}>
-                            <img style={{ height: "100%", width: "100%", objectFit: "cover", objectPosition: "5% 100%", transform: "scale(1.1)" }} src="https://images.unsplash.com/photo-1588474469548-c2ad10db52ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1044&q=80 " />
+                            <img className="ftco-animated" style={{ height: "100%", width: "100%", objectFit: "cover", objectPosition: "5% 100%", transform: "scale(1.1)" }} src="https://images.unsplash.com/photo-1588474469548-c2ad10db52ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1044&q=80 " />
                         </div>
                     </div>
                     <div className="col-12 col-md-6 d-flex flex-column justify-content-center">

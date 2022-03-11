@@ -75,8 +75,8 @@ export default function Products(){
                             </div>
                             <h3 className="text-center">Find your perfect pet and<br/>livestock</h3>
                             <div className=" d-flex">
-                            <input onChange={(e)=>{setSearchQuery(e.target.value);}} value={searchQuery} placeholder="Search Products . . ." className="form-control ms-2"/>
-                            <button className="btn-primary p-2">Search&nbsp;Now</button>
+                            <input onChange={(e)=>{setSearchQuery(e.target.value);}} value={searchQuery} placeholder="Search Products . . ." className="form-control ms-2" style ={{borderRadius:"5px 0px 0px 5px"}}/>
+                            <button className=" btn btn-primary p-2" style ={{borderRadius:"0px 5px 5px 0px"}}>Search&nbsp;Now</button>
                             </div>
                        </div>
                     

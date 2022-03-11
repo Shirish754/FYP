@@ -60,7 +60,7 @@ function Signup(props){
             <Modal.Body>
                 <form onSubmit={signIn}>
                     <div className="mb-3">
-                        <label className="form-label">EmailId</label>
+                        <label className="form-label">Email Id</label>
                         <input type="text" className="form-control" placeholder="adc@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
                     <div className="mb-3">

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from 'react'
 import * as FaIcons from 'react-icons/fa';
 import {
     Link
 } from "react-router-dom";
 import { baseUrl } from "../baseUrl";
+import CartPop from '../Cart/CartPop';
 //import { baseUrl } from "../../Shared/BaseUrl";
 
 export default function CollapsibleUI(props) {
+    const [cartPopOpen, setCartPopOpen] = useState(false);
+    const [ productId, setProductId] = useState();
+
+
     return (
         <div>
             <p>
@@ -25,14 +30,16 @@ export default function CollapsibleUI(props) {
                     {props.product.map((m, index) => {
                         return (
 
-                            <div className="col-12 col-sm-2 col-md-4 col-lg-3 p-2 " key={index}>
+                            <div className="col-12 col-sm-6 col-md-4 col-lg-3 p-2 " key={index}>
                                 <div className="col-12 bg-white shadow rounded p-2">
                                     <div>
+                                   
                                         <img style={{ height: 200, width: "100%", objectFit: "cover"}} src={baseUrl+m.image} />
                                     </div>
                                     <div className="d-flex justify-content-between">
                                         <p className="lead my-auto pt-2" style={{color:"#00B74A"}}>NRs. {m.price}</p>
-                                        <FaIcons.FaCartPlus onClick={() => { props.onCartClick(m.id) }} style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                        <FaIcons.FaCartPlus onClick={() => { setCartPopOpen(true); setProductId(m.id);}} style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                        
                                     </div>
                                     <p className="fs-5 fw-bold">{m.name}</p>
                                     <div>
@@ -43,7 +50,7 @@ export default function CollapsibleUI(props) {
                         );
                     })}
                 </div>
-
+                <CartPop id={productId} open={cartPopOpen} onClose={() => { setCartPopOpen(false) }}  />
             </div>
         </div>
     );

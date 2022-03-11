@@ -4,10 +4,12 @@ import {
 } from "react-router-dom";
 import { baseUrl } from "../baseUrl";
 import * as FaIcons from 'react-icons/fa';
+import CartPop from '../Cart/CartPop';
 
 export default function ProductDesc({id}) {
 
     const [product, setProduct] = useState({})
+    const [cartPopOpen, setCartPopOpen] = useState(false)
 
     useEffect(()=>{
         fetchProductAPI();
@@ -45,24 +47,34 @@ export default function ProductDesc({id}) {
                         
                     </div>
                 </div>
-                <section className="my-3 py-5">
-                            <div className="container col-12 d-flex flex-wrap">
-                                <div className="col-12 col-md-4 d-flex justify-content-between">
-                                    <div style={{height: 250 ,width:380, overflow:"hidden" ,borderRadius:"60px 60px 60px 0px" }}>
-                                    <img style={{ height: "100%" ,width:"100%",objectFit:"cover",  objectPosition: "5% 100%",  transform:"scale(1.1) "}} src={baseUrl +product.image} alt="product"/>
-                                    </div>
-                                </div>
-                                <div className="col-12 col-md-4 d-flex flex-column justify-content-center">
-                                    <div>
-                                        <p className="fs-2" style={{color:"#4caf50"}}> NRs {product.price}</p>
-                                        <p className="fs-2 accent-color">{product.name}</p>
-                                        <p>{product.description}</p>
-                                        <button className="btn btn-primary" style ={{borderRadius:"60px"}}><FaIcons.FaCartPlus/> Add to Cart</button>
-                                        
-                                    </div>
+                <section className="my-3 py-5"> 
+                <div>
+                <div><p>Product Description</p></div>
+                </div>
+
+                        <div className="container col-12 d-flex flex-wrap">
+                            
+                            <div className="col-12 col-md-4 d-flex justify-content-between">
+                                <div style={{height: 250 ,width:380, overflow:"hidden" ,borderRadius:"60px 60px 60px 0px" }}>
+                                <img style={{ height: "100%" ,width:"100%",objectFit:"cover",  objectPosition: "5% 100%",  transform:"scale(1.1) "}} src={baseUrl +product.image} alt="product"/>
                                 </div>
                             </div>
-                        </section>
+                            <div className="col-12 col-md-4 d-flex flex-column justify-content-center">
+                                <div>
+                                    
+                                    <p className="fs-2 accent-color">{product.name}</p>
+                                    <p>{product.description}</p>
+                                    <div>
+                                    <p className="fs-2" style={{color:"#4caf50"}}> NRs {product.price}</p>
+                                    <button className="btn btn-primary" style ={{borderRadius:"60px"}} onClick={()=>{setCartPopOpen(true)}}><FaIcons.FaCartPlus/> Add to Cart</button>
+                                    <CartPop open={cartPopOpen} onClose={() => { setCartPopOpen(false) }}  />
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
                         <section className="py-5">
                             <div className="container">
