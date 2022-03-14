@@ -50,7 +50,7 @@ export default function CollapsibleUI(props) {
                         );
                     })}
                 </div>
-                <CartPop id={productId} open={cartPopOpen} onClose={() => { setCartPopOpen(false) }}  />
+                <CartPop onSuccess={()=>{setCartPopOpen(false)}} id={productId} open={cartPopOpen} onClose={() => { setCartPopOpen(false) }}  />
             </div>
         </div>
     );

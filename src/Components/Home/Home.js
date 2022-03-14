@@ -50,7 +50,7 @@ function Home(props) {
 
 
             <section className="d-flex justify-content-center container mt-5">
-                <div className="col-12 col-md-6 mt-2">
+                {/* <div className="col-12 col-md-6 mt-2">
                     <div className="d-flex justify-content-center align-items-center container flex-column">
                         <div >
                             <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2F0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60" style={{ height: 320, width: 320, borderRadius: "50%" }} />
@@ -75,7 +75,7 @@ function Home(props) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
 
 
@@ -131,6 +131,7 @@ function Home(props) {
             </section>
 
         </div>
+       
     );
 }
 export default Home;

@@ -34,7 +34,7 @@ function NavbarUI(props){
                         <Navbar.Toggle className="bg-light" aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav" >
                         <Nav className="ms-auto">
-                        <Link to="/" className="text-white my-auto text-decoration-none">Home </Link>
+                        <Link to="/" className="text-white my-auto text-decoration-none"> Home</Link>
                         <Link to="/Products" className="text-white my-auto  text-decoration-none ms-2">Products</Link>
                         {localStorage.getItem('hamrovet-token')?
                         <NavDropdown title={<span className ="text-white">

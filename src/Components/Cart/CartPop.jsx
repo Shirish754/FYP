@@ -19,6 +19,7 @@ export default function CartPop(props) {
             .then((data) => {
                 if (data) {
                     alert('Cart Added Successful!')
+                    props.onClose();
                 }
                 else {
                     alert('Add to cart failed!')

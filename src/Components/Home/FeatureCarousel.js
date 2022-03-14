@@ -7,7 +7,7 @@ function FeaturedCarousel(props){
 
         return (
             <div>
-                {/* <Carousel>
+                <Carousel>
             {Array(5).fill().map((feature, index) => {
                 return (
 
@@ -18,10 +18,11 @@ function FeaturedCarousel(props){
                             alt="First slide"
                             style={{ objectFit: "cover" }}
                         />
+                        <p></p>
                     </Carousel.Item>
                 );
             })}
-        </Carousel> */}
+        </Carousel>
                 
             </div>
                 );

@@ -1,6 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
+import AccountPop from './AccountPop';
+import ChangePasswordPop from './ChangePasswordPop';
 
 export default function Account() {
+  const [isEmail, setisEmail]=useState();
+  const [isUserName, setIsUserName]=useState();
+  const [isContact, setisContact]=useState();
+  const [isAddress, setisAddress]=useState();
+  const [isPassword, setisPassword]=useState();
+  const [isNewPassword,setIsNewPassword]=useState();
+  const [isConfirmPassword, setisConfirmPassword]=useState();
+  const [editAccount, setEditAccount]=useState(false);
+  const [editPassword, setEditPassword]=useState(false);
   return (
     <section className='p-5'>
       <div className='mt-5'>
@@ -14,7 +25,7 @@ export default function Account() {
             <div className='d-flex flex-column col-6 p-4 ms-5 '>
               <h3 className='d-flex justify-content-center'>My Account</h3>
               <div className='d-flex flex-column'>
-                <form className='p-2 -3'>
+                <div className='p-2 -3'>
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-9">
@@ -46,10 +57,11 @@ export default function Account() {
 
                   <div class="form-group row">
                     <div class="col-sm-10 d-flex align-items-center justify-content-center">
-                      <button type="submit" class="btn btn-primary m-2">Edit Account</button>
+                      <button type="submit" class="btn btn-primary m-2" onClick={()=>{setEditAccount(true)}}>Edit Account</button>
+                      <AccountPop open={editAccount} onClose={() => { setEditAccount(false) }}/>
                     </div>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
@@ -60,7 +72,7 @@ export default function Account() {
             <h3 className='d-flex justify-content-center border-bottom p-2'>Change Password</h3>
             <div className='d-flex justify-content-center '>
             <div className='d-flex  flex-column justify-content-center align-items-center col-9'>
-            <form className=''>
+            <div className=''>
 
                   <div class="form-group row ">
                     <label for="inputEmail3" class=" col-sm-2 col-form-label">Old&nbsp;Password</label>
@@ -85,10 +97,11 @@ export default function Account() {
 
                   <div class="form-group row">
                     <div class="col-sm-10">
-                      <button type="submit" class="btn btn-danger m-3 ">Change&nbsp;Password</button>
+                      <button type="submit" class="btn btn-danger m-3 " onClick={()=>{setEditPassword(true)}}>Change&nbsp;Password</button>
+                      <ChangePasswordPop open={editPassword} onClose={() => { setEditPassword(false)}} />
                     </div>
                   </div>
-                </form>
+                </div>
             </div>
             <div className='d-flex flex-column justify-content-center align-items-center me-5 '><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT11pBtRlRTJa82iHXBdeTM5bI_ha6auFhdNg&usqp=CAU" alt="change password image"/></div>
             </div>

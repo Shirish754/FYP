@@ -2,15 +2,36 @@ import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { baseUrl } from "../baseUrl";
 
-export default function CartItemDeletepop() {
+export default function CartItemDeletepop(props) {
+
+    const deleteFromCart = async (e) => {
+
+        e.preventDefault();
+        await fetch(baseUrl + 'cart/deleteCart.php', {
+            method: "POST", body: JSON.stringify({
+              'CustomerId': JSON.parse(localStorage.getItem('hamrovet-token')).customerId,
+              'cartId': props.id,
+            })
+          })
+            .then(res => res.json())
+            .then(res => {
+              if (res === false) {
+                alert('Something went wrong')
+              } else {
+                props.onDeleted();
+              }
+            })
+
+    }
+
   return (
     <div>
-        <Modal centered>
+        <Modal show={props.open} onHide={() => { props.onClose() }} centered>
             <Modal.Header closeButton>
-                <Modal.Title>Are you Sure ?</Modal.Title>
+                <Modal.Title>Are you Sure ? {props.id}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <form>
+                <form onSubmit={deleteFromCart}>
                     <div className='d-flex justify-content-center align-items-center'>
                         <p>Delete Item from Cart?</p>
                     </div>
