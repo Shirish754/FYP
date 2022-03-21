@@ -90,8 +90,8 @@ export default function Products(){
                             {categories.map((cat, index) => {
                                 return (
 
-                                    <CollapsibleUI onCartClick={(menuId) => {
-                                        // if (JSON.parse(localStorage.getItem("rms-token"))) {
+                                    <CollapsibleUI onCartClick={(productId) => {
+                                        // if (JSON.parse(localStorage.getItem("hamroVet-token"))) {
                                         //     setCartOpen(true);
                                         //     setMenuId(menuId);
                                         // }

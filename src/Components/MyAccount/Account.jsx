@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import AccountPop from './AccountPop';
 import ChangePasswordPop from './ChangePasswordPop';
+import { baseUrl } from "../baseUrl";
 
 export default function Account() {
   const [isEmail, setisEmail]=useState();
@@ -13,12 +15,34 @@ export default function Account() {
   const [editAccount, setEditAccount]=useState(false);
   const [editPassword, setEditPassword]=useState(false);
   return (
+    <div>
+      {/* <div style={{height:"60px",width:"100%", backgroundColor:"#000000"}}></div> */}
+      <div style={{ overflowX: "hidden" }}>
+                    <div
+                        className="d-flex flex-wrap col-12 justify-content-center align-items-center text-white"
+                        style={{
+                            height: "35vh",
+                            width: "100vw",
+                            position:"relative",
+                            backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 10%, rgba(50, 51, 51, 0.6) 86%, rgba(51, 51, 25, 0.8) 100%),url("https://images.pexels.com/photos/8673633/pexels-photo-8673633.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500")',
+                            backgroundColor: "#cccccc",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                            backgroundSize: "cover",
+                        }}>
+                        <div className="text-center">
+                            <h1 className="small"><Link className="text-decoration-none text-white" to="/">Home </Link> /My Account</h1>
+                        </div>
+                        
+                    </div>
+                </div>
     <section className='p-5'>
+      
       <div className='mt-5'>
-        <div className='border border-black m-5 d-flex flex-column justify-content-center'>
+        <div className='border border-black m-5 d-flex flex-wrap flex-column justify-content-center'>
           <h2 className='d-flex justify-content-center border-bottom p-2'>Account details</h2>
           <div className='d-flex justify-content-center '>
-            <div className='d-flex flex-column col-3 justify-content-center align-items-center me-5 '>
+            <div className='d-flex flex-column col-3 justify-content-center align-items-center'>
                <img className="p-1 rounded-circle pt-2" style={{ height:"30vh"}} src={`https://ui-avatars.com/api/?background=000000&color=ffffff&name=${JSON.parse(localStorage.getItem('hamrovet-token')).userName}`}/>
                <div className='p-2'><h3>{JSON.parse(localStorage.getItem('hamrovet-token')).userName }</h3></div>
             </div>
@@ -70,40 +94,40 @@ export default function Account() {
         <div className='border border-black m-5 '>
           <div>
             <h3 className='d-flex justify-content-center border-bottom p-2'>Change Password</h3>
-            <div className='d-flex justify-content-center '>
-            <div className='d-flex  flex-column justify-content-center align-items-center col-9'>
-            <div className=''>
+            <div className='d-flex flex-wrap justify-content-center '>
+              <div className='d-flex  flex-column justify-content-center align-items-center col-9'>
+                <div className=''>
 
-                  <div class="form-group row ">
-                    <label for="inputEmail3" class=" col-sm-2 col-form-label">Old&nbsp;Password</label>
-                    <div class="">
-                      <input type="email" class="form-control m-1" id="inputEmail3" placeholder="********"/>
-                    </div>
-                  </div>
+                      <div class="form-group row ">
+                        <label for="inputEmail3" class=" col-sm-2 col-form-label">Old&nbsp;Password</label>
+                        <div class="">
+                          <input type="email" class="form-control m-1" id="inputEmail3" placeholder="********"/>
+                        </div>
+                      </div>
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class=" col-form-label">New&nbsp;Password</label>
-                    <div class="">
-                      <input type="password" class="form-control m-1" id="inputPassword3" placeholder="********"/>
-                    </div>
-                  </div>
+                      <div class="form-group row">
+                        <label for="inputPassword3" class=" col-form-label">New&nbsp;Password</label>
+                        <div class="">
+                          <input type="password" class="form-control m-1" id="inputPassword3" placeholder="********"/>
+                        </div>
+                      </div>
 
-                  <div class="form-group row">
-                    <label for="inputPassword3" class=" col-form-label">Confirm&nbsp;Password</label>
-                    <div class="">
-                      <input type="password" class="form-control m-1" id="inputPassword3" placeholder="********"/>
-                    </div>
-                  </div>
+                      <div class="form-group row">
+                        <label for="inputPassword3" class=" col-form-label">Confirm&nbsp;Password</label>
+                        <div class="">
+                          <input type="password" class="form-control m-1" id="inputPassword3" placeholder="********"/>
+                        </div>
+                      </div>
 
-                  <div class="form-group row">
-                    <div class="col-sm-10">
-                      <button type="submit" class="btn btn-danger m-3 " onClick={()=>{setEditPassword(true)}}>Change&nbsp;Password</button>
-                      <ChangePasswordPop open={editPassword} onClose={() => { setEditPassword(false)}} />
+                      <div class="form-group row">
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-danger m-3 " onClick={()=>{setEditPassword(true)}}>Change&nbsp;Password</button>
+                          <ChangePasswordPop open={editPassword} onClose={() => { setEditPassword(false)}} />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-            </div>
-            <div className='d-flex flex-column justify-content-center align-items-center me-5 '><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT11pBtRlRTJa82iHXBdeTM5bI_ha6auFhdNg&usqp=CAU" alt="change password image"/></div>
+              </div>
+              <div className='d-flex flex-column justify-content-center align-items-center me-5 '><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT11pBtRlRTJa82iHXBdeTM5bI_ha6auFhdNg&usqp=CAU" alt="change password image"/></div>
             </div>
             
           </div>
@@ -112,5 +136,7 @@ export default function Account() {
 
       </div>
     </section>
+    </div>
+    
   )
 }

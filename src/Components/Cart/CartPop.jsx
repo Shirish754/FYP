@@ -38,17 +38,8 @@ export default function CartPop(props) {
                     </Modal.Header>
                     <Modal.Body>
                         <form onSubmit={handleCartPopOpen}>
-                            <div className='d-flex justify-content-center align-items-center'>
-                                <p>Number of Quantity:</p>
-                                <div className='d-flex mb-1 pb-1 '>
 
-                                    <button type="button" className='w-50 m-1 border-0 ' style={{ backgroundColor: 'transparent' }} onClick={() => { setQuantity(quantity - 1) }}>-</button>
-                                    <p className='m-1 border p-2'> {quantity}</p>
-                                    <button type="button" className='w-50 m-1 border-0' style={{ backgroundColor: 'transparent' }} onClick={() => { setQuantity(quantity + 1) }}>+</button>
-                                </div>
-                            </div>
-
-                            <div className="d-flex justify-content-between">
+                            <div className="d-flex justify-content-between m-4">
                                 <button className=" btn btn fw-bold  ms-2 bg-danger text-white">Cancel</button>
                                 <button type="submit" className=" btn btn fw-bold  ms-2 bg-primary text-white" >Yes</button>
                             </div>
