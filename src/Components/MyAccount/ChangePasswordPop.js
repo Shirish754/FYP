@@ -9,7 +9,7 @@ function ChangePasswordPop(props){
                         <Modal.Title>Are you sure?</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form>
+                        <form onSubmit={(e)=>{e.preventDefault(); props.changePassword();}}>
                             <div className="d-flex justify-content-between">
                                 <button className=" btn btn fw-bold  ms-2 bg-danger text-white">Cancel</button>
                                 <button type="submit" className=" btn btn fw-bold  ms-2 bg-primary text-white" >Yes</button>

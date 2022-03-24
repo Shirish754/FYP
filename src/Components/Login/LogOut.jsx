@@ -15,7 +15,7 @@ export default function LogOut(props) {
                 <p>Are you sure?</p>
                 <div className ="d-flex justify-content-between">
                 <button className=" btn btn fw-bold  ms-2 bg-danger text-white">Cancel</button>
-                <button className=" btn btn fw-bold  ms-2 bg-primary text-white" onClick={() => { localStorage.removeItem('hamrovet-token'); window.location.reload(true); }} >Yes</button>
+                <button className=" btn btn fw-bold  ms-2 bg-primary text-white" onClick={() => { localStorage.removeItem('hamrovet-token'); window.location.reload(true); window.location.href="/"; }} >Yes</button>
                 </div>
                 
             </form>

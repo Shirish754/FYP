@@ -37,11 +37,11 @@ export default function CartPop(props) {
                         <Modal.Title>Add to Cart ?</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <form onSubmit={handleCartPopOpen}>
+                        <form onSubmit={handleCartPopOpen} >
 
                             <div className="d-flex justify-content-between m-4">
                                 <button className=" btn btn fw-bold  ms-2 bg-danger text-white">Cancel</button>
-                                <button type="submit" className=" btn btn fw-bold  ms-2 bg-primary text-white" >Yes</button>
+                                <button type="submit" className=" btn btn fw-bold  ms-2 bg-primary text-white"  >Yes</button>
                             </div>
 
                         </form>

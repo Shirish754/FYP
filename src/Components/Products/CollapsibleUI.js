@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import * as FaIcons from 'react-icons/fa';
 import {
     Link
@@ -11,7 +12,16 @@ export default function CollapsibleUI(props) {
     const [cartPopOpen, setCartPopOpen] = useState(false);
     const [ productId, setProductId] = useState();
 
-
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Please click to view Details
+        </Tooltip>
+      );
+      const renderTooltipLogout = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Please login to view Details
+        </Tooltip>
+      );
     return (
         <div>
             <p>
@@ -33,18 +43,43 @@ export default function CollapsibleUI(props) {
                             <div className="col-12 col-sm-6 col-md-4 col-lg-3 p-2 " key={index}>
                                 <div className="col-12 bg-white shadow rounded p-2">
                                     <div>
-                                   
+                                        {localStorage.getItem('hamrovet-token')?
+                                    <Link to = {`/products/${m.id}`}>
+                                        <OverlayTrigger
+                                        placement="top"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
                                         <img style={{ height: 200, width: "100%", objectFit: "cover"}} src={baseUrl+m.image} />
+                                        </OverlayTrigger>
+                                        </Link> :
+                                    <OverlayTrigger
+                                        placement="top"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltipLogout}
+                                    >
+                                    <img style={{ height: 200, width: "100%", objectFit: "cover"}} src={baseUrl+m.image} />
+                                    </OverlayTrigger>
+                                    }
+ 
                                     </div>
                                     <div className="d-flex justify-content-between">
                                         <p className="lead my-auto pt-2" style={{color:"#00B74A"}}>NRs. {m.price}</p>
+
+                                    
                                         <FaIcons.FaCartPlus onClick={() => { setCartPopOpen(true); setProductId(m.id);}} style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                    
+                                    </div>
+                                    {localStorage.getItem('hamrovet-token')?
+                                    <Link to = {`/products/${m.id}`} className="text-decoration-none text-secondary" style={{width:"5px"}}><p className="fs-5 fw-bold">{m.name}</p></Link>
+                                     
+                                     :
+                                     <p className="fs-5 fw-bold">{m.name}</p>
+                                    }
                                         
-                                    </div>
-                                    <p className="fs-5 fw-bold">{m.name}</p>
-                                    <div>
-                                    <Link style={{textDecoration:"none"}} className="" to = {`/products/${m.id}`}>View Details</Link>
-                                    </div>
+                                    
+                                    
+                                    
                                 </div>
                             </div>
                         );

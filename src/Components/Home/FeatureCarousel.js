@@ -18,6 +18,10 @@ function FeaturedCarousel(props){
                     alt="First slide"
                     style={{height:"100vh", width:"100vw", objectFit:"cover"}}
                     />
+                    <Carousel.Caption className="text-align-center">
+                        <h3>Free Shipping</h3>
+                        <p>We will ship the product directly at your home on order above a lakh</p>
+                    </Carousel.Caption>
                 
                 </Carousel.Item>
                 <Carousel.Item style={{height:"100vh", width:"100vw"}}>

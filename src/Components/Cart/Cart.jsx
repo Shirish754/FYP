@@ -57,16 +57,17 @@ export default function Cart() {
             background: '#ddd',
             height: 'auto',
             fontFamily: 'sans-serif',
+            
 
 
           }}>
           <div className='d-flex align-items-center justify-content-center p-5'
             style={{
-
+              marginTop: '20px',
 
             }}>
             <div className='d-flex justify-content-center'>
-              <div className='col-md-11 border border-dark p-4' style={{ backgroundColor: '#fff', borderRadius: "25px 0px 0px 25px" }}>
+              <div className='col-md-11 border border-dark p-4' style={{ backgroundColor: '#fff', borderRadius: "25px 0px 0px 25px"}}>
                 <div className='d-flex justify-content-between pb-3 border-bottom'>
                   <div> <h3><b>Shopping Cart</b></h3></div>
                   <div><p>No of items</p></div>
@@ -113,8 +114,11 @@ export default function Cart() {
                   <p>Total Price</p>
                   <p>100</p>
                 </div>
-                <div>
-                  <button className='btn btn-dark' style={{ width: '100%' }}>Checkout</button>
+                <div className='p-2'>
+                  <button className='btn btn-dark' style={{ width: '100%' }}>Online Payment</button>
+                </div>
+                <div className='p-2'>
+                  <button className='btn btn-dark' style={{ width: '100%' }}>Pay on Delivery</button>
                 </div>
               </div>
             </div>
