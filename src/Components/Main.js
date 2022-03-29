@@ -11,6 +11,7 @@ import Footer from './Footer/Footer';
 import ProductDesc from "./Products/ProductDesc";
 import Cart from "./Cart/Cart";
 import Account from "./MyAccount/Account";
+import Order from "./Orders/Order";
 import { baseUrl } from "./baseUrl";
 
 
@@ -39,6 +40,7 @@ function Main(props) {
                     <>
                         <Route exact path="/cart" component={() => <Cart />} />
                         <Route exact path="/account" component={() => <Account />} />
+                        <Route exact path="/order" component={() => <Order/>} />
                     </> : null
                 }
                 <Route path="*" component={() => <PageNotFound title="404 Page Not Found . . ." />} />

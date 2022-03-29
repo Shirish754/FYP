@@ -4,18 +4,31 @@ import {
 } from "react-router-dom";
 import CollapsibleUI from "./CollapsibleUI";
 import { baseUrl } from "../baseUrl";
+import { OverlayTrigger,Tooltip } from "react-bootstrap";
+import * as FaIcons from "react-icons/fa";
+import CartPop from "../Cart/CartPop";
 
 
 export default function Products(){
     const [searchQuery, setSearchQuery] = useState("");
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
+    const [cartPopOpen, setCartPopOpen] = useState(false);
+    const [ productId, setProductId] = useState();
 
- 
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Please click to view Details
+        </Tooltip>
+      );
+      const renderTooltipLogout = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Please login to view Details
+        </Tooltip>
+      );
 
     useEffect(() => {
        fetchCatAPI();
-
 
     }, [])
 
@@ -107,24 +120,60 @@ export default function Products(){
 
                         <>
                             <div className="col-12 d-flex flex-wrap">
-                            {categories.map((cat, index) => {
+                            {products.filter((p,_)=>p.name.toLowerCase().includes(searchQuery.toLowerCase())).map((m, index) => {
                                 return (
+                              <div className="col-12 col-sm-6 col-md-4 col-lg-3 p-2 " key={index}>
+                                <div className="col-12 bg-white shadow rounded p-2">
+                                    <div>
+                                        {localStorage.getItem('hamrovet-token')?
+                                    <Link to = {`/products/${m.id}`}>
+                                        <OverlayTrigger
+                                        placement="top"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltip}
+                                    >
+                                        <img style={{ height: 200, width: "100%", objectFit: "cover"}} src={baseUrl+m.image} />
+                                        </OverlayTrigger>
+                                        </Link> :
+                                    <OverlayTrigger
+                                        placement="top"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltipLogout}
+                                    >
+                                    <img style={{ height: 200, width: "100%", objectFit: "cover"}} src={baseUrl+m.image} />
+                                    </OverlayTrigger>
+                                    }
+ 
+                                    </div>
+                                    <div className="d-flex justify-content-between">
+                                        <p className="lead my-auto pt-2" style={{color:"#00B74A"}}>NRs. {m.price}</p>
 
-                                    <CollapsibleUI onCartClick={(menuId) => {
-                                        // if (JSON.parse(localStorage.getItem("rms-token"))) {
-                                        //     setCartOpen(true);
-                                        //     setMenuId(menuId);
-                                        // }
-                                        // else {
-                                        //     alert('Please login to add to cart!');
-                                        // }
-                                    }} index={index} cat={cat} product={products.filter((m, index) => m.catId == cat.id)} />
+                                    
+                                        <FaIcons.FaCartPlus onClick={() => { 
+                                            setCartPopOpen(true); setProductId(m.id);
+                                            }} style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                    
+                                    </div>
+                                    {localStorage.getItem('hamrovet-token')?
+                                    <Link to = {`/products/${m.id}`} className="text-decoration-none text-secondary" style={{width:"5px"}}><p className="fs-5 fw-bold">{m.name}</p></Link>
+                                     
+                                     :
+                                     <p className="fs-5 fw-bold">{m.name}</p>
+                                    }
+                                        
+                                    
+                                        
+                                    
+                                </div>
+                            </div>
+                                    
                                 );
                             }
                             )}
                             </div>
                         </>
                     }
+            <CartPop onSuccess={()=>{setCartPopOpen(false)}} id={productId} open={cartPopOpen} onClose={() => { setCartPopOpen(false) }}  />
                 </div>
             </div>
             </div>

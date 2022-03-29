@@ -70,7 +70,7 @@ export default function Cart() {
               <div className='col-md-11 border border-dark p-4' style={{ backgroundColor: '#fff', borderRadius: "25px 0px 0px 25px"}}>
                 <div className='d-flex justify-content-between pb-3 border-bottom'>
                   <div> <h3><b>Shopping Cart</b></h3></div>
-                  <div><p>No of items</p></div>
+                  <div><p>No of items:&nbsp;{cartItem.length}</p></div>
                 </div>
                 <div className=''>
 
@@ -78,7 +78,7 @@ export default function Cart() {
 
                     cartItem.map(item => {
                       return (
-                        <Individual item={item}/>
+                        <Individual onEdited={()=>{fetchMyCart();}} item={item}/>
                         
                       );
                     })
@@ -106,7 +106,7 @@ export default function Cart() {
                   <div>
                     <div className='border-bottom border-dark'>
                       <h3>Shipping</h3>
-                      <p className='border border-dark bg-white p-1'>Shipping delivery Charge</p>
+                      <p className='border border-dark bg-white p-1'>Shipping delivery Charge:</p>
                     </div>
                   </div>
                 </div>

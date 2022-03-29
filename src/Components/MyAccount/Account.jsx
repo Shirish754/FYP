@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import AccountPop from './AccountPop';
 import ChangePasswordPop from './ChangePasswordPop';
 import { baseUrl } from "../baseUrl";
 
-export default function Account() {
+export default function Account(props) {
   const [isEmail, setisEmail]=useState();
   const [isUserName, setIsUserName]=useState();
   const [isContact, setisContact]=useState();
@@ -14,6 +14,42 @@ export default function Account() {
   const [isConfirmPassword, setisConfirmPassword]=useState();
   const [editAccount, setEditAccount]=useState(false);
   const [editPassword, setEditPassword]=useState(false);
+ 
+
+
+  useEffect(()=>{
+    setisEmail(props.isEmail);
+    setIsUserName(props.isUserName);
+    setisContact(props.isContact);
+    setisAddress(props.isAddress);
+  },[props.Account])
+
+  const editUserAccount = async(e) => {
+    e.preventDefault();
+    var bodyFormData = new FormData();
+  bodyFormData.append('email','isEmail' );
+  bodyFormData.append('username','isUserName' );
+  bodyFormData.append('contactNo','isContact' );
+  bodyFormData.append('address','isAddress' );
+
+  fetch(baseUrl+'users/editaccount.php',{
+    method: 'POST',
+    body: bodyFormData
+  })
+  .then(res => res.json())
+  .then(res => {
+      if (res === true) {
+        alert('Product Successfully Updated!');
+        window.location.reload();
+    }
+    else {
+        alert('Something went wrong!');
+    }
+  })
+  .catch(e => {
+    alert('Something went wrong!');
+  })
+  }
 
 
   const changePassword = async()=>{
@@ -82,28 +118,36 @@ export default function Account() {
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-12 col-md-9 col-lg-9">
-                      <input type="email" class="form-control m-1" id="inputEmail3" placeholder="Email"/>
+                      <input 
+                      value={isEmail} onChange={(e) => { setisEmail(e.target.value) }} type="email"
+                       class="form-control m-1" id="inputEmail3" placeholder="Email"/>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label ">User&nbsp;Name:</label>
                     <div class="col-sm-12 col-md-9 col-lg-9">
-                      <input type="password" class="form-control m-1" id="inputPassword3" placeholder="Password"/>
+                      <input 
+                      required value={isUserName} onChange={(e) => { setisEmail(e.target.value) }} 
+                      type="text"  class="form-control m-1" id="inputPassword3" placeholder="Password"/>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Address:</label>
                     <div class="col-sm-12 col-md-9 col-lg-9">
-                      <input type="password" class="form-control m-1 " id="inputPassword3" placeholder="Password"/>
+                      <input 
+                      required value={isAddress} onChange={(e) => { setisAddress(e.target.value) }} 
+                      type="text" class="form-control m-1 " id="inputPassword3" placeholder="Password"/>
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <label for="inputPassword3" class="col-sm-2 col-form-label">Contact:</label>
                     <div class="col-sm-12 col-md-9 col-lg-9">
-                      <input type="password" class="form-control m-1" id="inputPassword3" placeholder="Password"/>
+                      <input 
+                      required value={isContact} onChange={(e) => { setisContact(e.target.value) }}
+                       type="text" class="form-control m-1" id="inputPassword3" placeholder="Password"/>
                     </div>
                   </div>
                   

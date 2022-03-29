@@ -47,6 +47,7 @@ function NavbarUI(props){
                         </span>} id="basic-nav-dropdown" className="my-auto">
                             <NavDropdown.Item href=""><Link to="/Account" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdPerson/> My Account</Link></NavDropdown.Item>
                             <NavDropdown.Item href=""><Link to="/Cart" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdCart/> Cart</Link> </NavDropdown.Item>
+                            <NavDropdown.Item href=""><Link to="/Order" className="text-black my-auto  text-decoration-none"><FaIcons.FaBimobject/> Orders</Link> </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item className="text-danger" href="" onClick={() => { setIsLogOut(true); }}>
                                 <RiIcons.RiLogoutBoxRLine/>LogOut

@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import * as FaIcons  from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import {
@@ -14,7 +15,12 @@ function Home(props) {
     const [recentProducts, setRecentProducts] = useState([]);
     const [cartPopOpen, setCartPopOpen] = useState(false);
     const [ productId, setProductId] = useState();
-
+    
+    const renderTooltip = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Please login to add to cart
+        </Tooltip>
+      );
 
     useEffect(() => {
       fetchRecentProducts();
@@ -229,7 +235,20 @@ function Home(props) {
                                             <p className="">Rs. {product.price}</p>
                                         </div>
                                         <div className="p-2">
+                                        {localStorage.getItem('hamrovet-token')?
                                             <FaIcons.FaCartPlus onClick={() => { setCartPopOpen(true); setProductId(product.id);}} style={{ cursor: "pointer" }}/>
+                                            :
+                                            <OverlayTrigger
+                                                placement="top"
+                                                delay={{ show: 250, hide: 400 }}
+                                                overlay={renderTooltip}
+                                            >
+                                                <div>
+                                                <FaIcons.FaCartPlus style={{ cursor: "pointer" }}/>
+                                                </div>
+                                            </OverlayTrigger>
+                                            
+                        }
                                         </div>
                                     </div>
                                     <CartPop onSuccess={()=>{setCartPopOpen(false)}} id={productId} open={cartPopOpen} onClose={() => { setCartPopOpen(false) }}  />
