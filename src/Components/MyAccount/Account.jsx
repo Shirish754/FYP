@@ -14,32 +14,37 @@ export default function Account(props) {
   const [isConfirmPassword, setisConfirmPassword]=useState();
   const [editAccount, setEditAccount]=useState(false);
   const [editPassword, setEditPassword]=useState(false);
- 
+  // '{"Customer_found":"true","customerId":"3","userName":"Shirish1","email":"shpokh499@gmail.com","contact":"9824133994","address":"Ratnachowk-7, Pokhara","join date":"1644819735"}'
 
 
   useEffect(()=>{
-    setisEmail(props.isEmail);
-    setIsUserName(props.isUserName);
-    setisContact(props.isContact);
-    setisAddress(props.isAddress);
-  },[props.Account])
+    var acc= JSON.parse(localStorage.getItem('hamrovet-token'));
+    setisEmail(acc.email);
+    setIsUserName(acc.userName);
+    setisContact(acc.contact);
+    setisAddress(acc.address);
+  },[])
 
   const editUserAccount = async(e) => {
     e.preventDefault();
-    var bodyFormData = new FormData();
-  bodyFormData.append('email','isEmail' );
-  bodyFormData.append('username','isUserName' );
-  bodyFormData.append('contactNo','isContact' );
-  bodyFormData.append('address','isAddress' );
-
-  fetch(baseUrl+'users/editaccount.php',{
+    
+  fetch(baseUrl+'user/editaccount.php',{
     method: 'POST',
-    body: bodyFormData
+    body: JSON.stringify({
+      "customerId":JSON.parse(localStorage.getItem('hamrovet-token')).customerId,
+    "newEmail":isEmail,
+    "newUserName":isUserName,
+    "newAddress":isAddress,
+    "newContact":isContact
+    })
   })
   .then(res => res.json())
   .then(res => {
-      if (res === true) {
-        alert('Product Successfully Updated!');
+    console.log(res);
+      if (res.updated === 'true') {
+        alert('Profile updated successfully!');
+        localStorage.setItem('hamrovet-token',JSON.stringify(res))
+        
         window.location.reload();
     }
     else {
@@ -114,7 +119,7 @@ export default function Account(props) {
             <div className='d-flex flex-column p-4 col col-sm-7 col-md-6 col-lg-6'>
               <h3 className='d-flex justify-content-center col-12 '>My Account</h3>
               <div className='d-flex flex-column'>
-                <div className='p-2'>
+                <form onSubmit={editUserAccount} className='p-2'>
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-12 col-md-9 col-lg-9">
@@ -128,7 +133,7 @@ export default function Account(props) {
                     <label for="inputPassword3" class="col-sm-2 col-form-label ">User&nbsp;Name:</label>
                     <div class="col-sm-12 col-md-9 col-lg-9">
                       <input 
-                      required value={isUserName} onChange={(e) => { setisEmail(e.target.value) }} 
+                      required value={isUserName} onChange={(e) => { setIsUserName(e.target.value) }} 
                       type="text"  class="form-control m-1" id="inputPassword3" placeholder="Password"/>
                     </div>
                   </div>
@@ -154,11 +159,11 @@ export default function Account(props) {
 
                   <div class="form-group row">
                     <div class="col-sm-10 d-flex align-items-center justify-content-center">
-                      <button type="submit" class="btn btn-primary m-2" onClick={()=>{setEditAccount(true)}}>Edit Account</button>
+                      <button type="button" class="btn btn-primary m-2" onClick={()=>{setEditAccount(true)}}>Edit Account</button>
                       <AccountPop open={editAccount} onClose={() => { setEditAccount(false) }}/>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>

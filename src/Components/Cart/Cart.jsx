@@ -98,20 +98,19 @@ export default function Cart() {
                 <div>
                   <div className='d-flex justify-content-between p-2'>
                     <div className='d-flex justify-content-between'>
-                      <div className='m-1'>Items</div>
-                      <div className='m-1'>3 </div>
+                      <div className='m-1'><p>No of items:&nbsp;{cartItem.length}</p></div>
                     </div >
                     <div className='m-1'>Initial Price</div>
                   </div>
                   <div>
                     <div className='border-bottom border-dark'>
                       <h3>Shipping</h3>
-                      <p className='border border-dark bg-white p-1'>Shipping delivery Charge:</p>
+                      <p className='border border-dark bg-white p-1'>Free Delivery </p>
                     </div>
                   </div>
                 </div>
                 <div className='d-flex justify-content-between pt-2'>
-                  <p>Total Price</p>
+                  <p>Final Price</p>
                   <p>100</p>
                 </div>
                 <div className='p-2'>

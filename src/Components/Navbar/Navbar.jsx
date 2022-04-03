@@ -5,6 +5,7 @@ import * as IoIcons  from "react-icons/io";
 import {
     Link
 } from "react-router-dom";
+import * as FaIcons from "react-icons/fa";
 
 import Login from "../Login/Login";
 import Signup from "../Login/Signup";
@@ -49,7 +50,7 @@ function NavbarUI(props){
                             <NavDropdown.Item href=""><Link to="/Cart" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdCart/> Cart</Link> </NavDropdown.Item>
                             <NavDropdown.Item href=""><Link to="/Order" className="text-black my-auto  text-decoration-none"><FaIcons.FaBimobject/> Orders</Link> </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item className="text-danger" href="" onClick={() => { setIsLogOut(true); }}>
+                            <NavDropdown.Item className="text-danger" href="" onClick={() => { setIsLogOut(true);  }}>
                                 <RiIcons.RiLogoutBoxRLine/>LogOut
                             </NavDropdown.Item>
                         </NavDropdown>

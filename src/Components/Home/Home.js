@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useState, useRef} from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import * as FaIcons  from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -15,6 +15,8 @@ function Home(props) {
     const [recentProducts, setRecentProducts] = useState([]);
     const [cartPopOpen, setCartPopOpen] = useState(false);
     const [ productId, setProductId] = useState();
+
+    const seeRef = useRef();
     
     const renderTooltip = (props) => (
         <Tooltip id="button-tooltip" {...props}>
@@ -38,7 +40,7 @@ function Home(props) {
     
     return (
         <div style={{fontFamily:"sans-serif"}}>
-            <section >
+            <section>
                 <div style={{ overflowX: "hidden" }}>
                     <div className="d-flex flex-wrap col-12 justify-content-center align-items-center text-white "
                         style={{
@@ -65,7 +67,7 @@ function Home(props) {
                                 }}><Link to ="/products" className="text-decoration-none text-black"> See All Products</Link> </button>    
                             </div>
                             <div className="text-center p-5">
-                                <Link to="/" className="text-decoration-none text-white"><h5>See More</h5></Link>
+                                <button onClick={()=>{ seeRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', top:-50 })}} className="border-0 bg-transparent text-white"><h5>See More</h5></button>
                                 <Link to="/" className="text-decoration-none text-white"><RiArrowDropDownLine /></Link>
                                 
                             </div>
@@ -77,8 +79,9 @@ function Home(props) {
                     </div>
                 </div>
             </section>
+            <div className="mb-5" ref={seeRef}></div>
 
-            <div className="d-flex flex-wrap justify-content-center container mt-5"><h3>Why HamroVet?</h3></div>
+            <div  className="d-flex flex-wrap justify-content-center container mt-5 pt-5"><h3>Why HamroVet?</h3></div>
             <section className="d-flex flex-wrap justify-content-center container mt-5">
 
                 <div className="col-xs-12 col-md-3 mt-2">
@@ -147,7 +150,7 @@ function Home(props) {
                             width:"50vh",
                             backgroundPosition: "center",
                             backgroundSize: "cover",
-                            }}><p className=" p-2 bg-success" style={{width:"70px"}}>Cattle</p></div>
+                            }}><p className=" p-2 bg-success text-white" style={{width:"70px"}}>Cattle</p></div>
                         <div className="mt-4 col-sm-4 col-md-6 col-lg-3" style={{
                             backgroundImage:'url("https://media.istockphoto.com/photos/chickens-on-traditional-free-range-poultry-farm-picture-id478287121?k=20&m=478287121&s=612x612&w=0&h=xJTk1f4NOwEsPZiCQ5wHgFNAFq1I9qm578HZplMLnxY=")',
                             height:"25vh",
@@ -155,13 +158,13 @@ function Home(props) {
                             backgroundPosition: "center",
                             backgroundSize: "cover",
                             
-                            }}><p className=" p-2 bg-success" style={{width:"70px"}}>Poultry</p></div>
+                            }}><p className=" p-2 bg-success text-white" style={{width:"70px"}}>Poultry</p></div>
                     </div>
                     <div className="m-4 ">
                         <div style={{ height:"25vh",width:"50vh",}} className=" d-flex flex-column justify-content-center align-items-center ">
                             <p>HamroVet</p>
                             <p>Quality product is the most priority</p>
-                            <button className="btn btn-success" style={{borderRadius:"50px"}}>Shop Now</button>
+                            <button className="btn btn-success" style={{borderRadius:"50px"}}><Link className="text-decoration-none text-white" to ="/products">Shop Now</Link></button>
 
                         </div>
                         <div  style={{
@@ -180,7 +183,7 @@ function Home(props) {
                             backgroundPosition: "center",
                             backgroundSize: "cover",
 
-                            }}><p className=" p-2 bg-success" style={{width:"70px"}}>Pets</p></div>
+                            }}><p className=" p-2 bg-success text-white" style={{width:"70px"}}>Pets</p></div>
                         <div className=" mt-4 col-12 col-sm-4 col-md-6 col-lg-4" style={{
                             backgroundImage:'url("https://media.istockphoto.com/photos/two-goldfish-in-a-fish-tank-picture-id1250823900?k=20&m=1250823900&s=612x612&w=0&h=xIbKsRy8oOQ7oy1UsItZqShjQ_stRE-0ApURW38NmgU=")',
                             height:"25vh",
@@ -188,7 +191,7 @@ function Home(props) {
                             backgroundPosition: "center",
                             backgroundSize: "cover",
                             
-                            }}><p className=" p-2 bg-success" style={{width:"70px"}}>Fish</p></div>
+                            }}><p className=" p-2 bg-success text-white" style={{width:"70px"}}>Fish</p></div>
                     </div>
                 </div>
             </section>
@@ -264,7 +267,7 @@ function Home(props) {
 
                 </div>
                 <div className="d-flex justify-content-center align-items-center m-4">
-                <button className="btn btn-primary">See More</button>
+                <button className="btn btn-primary"><Link className="text-decoration-none text-white" to ="/products">See More</Link></button>
                 </div>
                 
             </section>

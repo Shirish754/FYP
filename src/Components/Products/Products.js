@@ -145,13 +145,39 @@ export default function Products(){
                                     }
  
                                     </div>
+
+
                                     <div className="d-flex justify-content-between">
                                         <p className="lead my-auto pt-2" style={{color:"#00B74A"}}>NRs. {m.price}</p>
-
-                                    
-                                        <FaIcons.FaCartPlus onClick={() => { 
-                                            setCartPopOpen(true); setProductId(m.id);
-                                            }} style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                        {localStorage.getItem('hamrovet-token')?
+                                            <OverlayTrigger
+                                            placement="top"
+                                            delay={{ show: 250, hide: 400 }}
+                                            overlay={renderTooltipLogout}
+                                        >
+                                            <div>
+                                                <FaIcons.FaCartPlus onClick={() => { 
+                                                setCartPopOpen(true); setProductId(m.id);
+                                                }} style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                            </div>
+                                        
+                                        </OverlayTrigger>
+                                        :
+                                        <div>
+                                            <OverlayTrigger
+                                            placement="top"
+                                            delay={{ show: 250, hide: 400 }}
+                                            overlay={renderTooltipLogout}
+                                        >
+                                            <div>
+                                            <FaIcons.FaCartPlus  style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                            </div>
+                                        
+                                        </OverlayTrigger>
+                                            
+                                            
+                                        </div>
+                                        }
                                     
                                     </div>
                                     {localStorage.getItem('hamrovet-token')?

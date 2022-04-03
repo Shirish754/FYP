@@ -49,7 +49,7 @@ function Individual(props){
                 <div className='d-flex '>
                     <button type="button" className='w-50 m-1 border-0 ' style={{ backgroundColor: 'transparent' }} disabled={quantity<=1} onClick={() => { editCart(parseInt(quantity)-1) }}>-</button>
                     <p className='m-1 border p-2'>{quantity} </p>
-                    <button type="button" className='w-50 m-1 border-0' style={{ backgroundColor: 'transparent' }} disabled={quantity>=10} onClick={() => { editCart(parseInt(quantity)+1) }}>+</button>
+                    <button type="button" className='w-50 m-1 border-0' style={{ backgroundColor: 'transparent' }} disabled={quantity>=1000} onClick={() => { editCart(parseInt(quantity)+1) }}>+</button>
                 </div>
                 </ListGroup.Item>
                 <ListGroup.Item style={{ width: '15%' }} className='border-0 d-flex align-items-center '>Rs. {parseInt(props.item.Price)*parseInt(quantity)}</ListGroup.Item>

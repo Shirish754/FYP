@@ -22,6 +22,11 @@ export default function CollapsibleUI(props) {
           Please login to view Details
         </Tooltip>
       );
+      const renderTooltipCart = (props) => (
+        <Tooltip id="button-tooltip" {...props}>
+          Please login to add to cart
+        </Tooltip>
+      );
     return (
         <div>
             <p>
@@ -65,10 +70,21 @@ export default function CollapsibleUI(props) {
                                     </div>
                                     <div className="d-flex justify-content-between">
                                         <p className="lead my-auto pt-2" style={{color:"#00B74A"}}>NRs. {m.price}</p>
+                                        {localStorage.getItem('hamrovet-token')?
+                                        <div>
 
-                                    
-                                        <FaIcons.FaCartPlus onClick={() => { setCartPopOpen(true); setProductId(m.id);}} style={{ cursor: "pointer" }} className="my-auto" size={25} />
-                                    
+                                         <FaIcons.FaCartPlus onClick={() => { setCartPopOpen(true); setProductId(m.id);}} style={{ cursor: "pointer" }} className="my-auto" size={25} />
+                                         </div>
+                                        :
+                                        <OverlayTrigger
+                                        placement="top"
+                                        delay={{ show: 250, hide: 400 }}
+                                        overlay={renderTooltipCart}
+                                    >
+                                        <div> <FaIcons.FaCartPlus style={{ cursor: "pointer" }} className="my-auto" size={25} /></div>
+                                   
+                                    </OverlayTrigger> 
+                                        }
                                     </div>
                                     {localStorage.getItem('hamrovet-token')?
                                     <Link to = {`/products/${m.id}`} className="text-decoration-none text-secondary" style={{width:"5px"}}><p className="fs-5 fw-bold">{m.name}</p></Link>
