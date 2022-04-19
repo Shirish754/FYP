@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { baseUrl } from "../baseUrl";
+import swal from 'sweetalert';
 
 
 function Login(props){
@@ -26,8 +27,8 @@ function Login(props){
                     window.location.reload(true);
                 }
                 else {
-
-                    alert('Login Unsuccess!');
+                    swal("Oops!", "Invalid Email or Password", "error");
+                    // alert('Login Unsuccess!');
                 }
             })
             .catch(e => alert(e.message));

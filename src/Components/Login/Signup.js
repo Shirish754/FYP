@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal } from "react-bootstrap";
 import { baseUrl } from "../baseUrl";
-
+import swal from 'sweetalert';
 
 
 function Signup(props){
@@ -24,7 +24,7 @@ function Signup(props){
 
         const signIn = async (e) => {
             e.preventDefault();
-            await fetch(baseUrl + 'user/signUp.php', {
+            await fetch(baseUrl + 'user/SignUp.php', {
                 body: JSON.stringify({
                     "username" :userName,
                     "contact": contact,
@@ -39,12 +39,14 @@ function Signup(props){
                 .then((res) => {
                     if (res.customer_registered === 'true') {
                         reset();
-                        alert('Signup Success!');
+                        swal("Success", "You have successfully registered", "success");
+                        // alert('Signup Success!');
                         props.onLoginClick();
                     }
                     else {
-    
-                        alert('Signup Unsuccess!');
+
+                        swal("Error", "Something went wrong", "error");
+                        // alert('Signup Unsuccess!');
                     }
                 })
                 .catch(e => alert(e.message));
@@ -61,7 +63,7 @@ function Signup(props){
                 <form onSubmit={signIn}>
                     <div className="mb-3">
                         <label className="form-label">Email Id</label>
-                        <input type="text" className="form-control" placeholder="adc@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                        <input type="email" className="form-control" placeholder="adc@gmail.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Name</label>

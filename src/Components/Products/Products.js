@@ -7,6 +7,7 @@ import { baseUrl } from "../baseUrl";
 import { OverlayTrigger,Tooltip } from "react-bootstrap";
 import * as FaIcons from "react-icons/fa";
 import CartPop from "../Cart/CartPop";
+import swal from 'sweetalert';
 
 
 export default function Products(){
@@ -40,7 +41,9 @@ export default function Products(){
                 setCategories(res);
                 console.log(res);
             })
-            .catch((e) => alert('Something went wrong!'));
+            .catch((e) => 
+            swal("Something went wrong", "", "error"));
+            // alert('Something went wrong!'));
 
     }
 
@@ -56,10 +59,9 @@ export default function Products(){
             .then((res) => {
                 setProducts(res);
             })
-            .catch((e) => alert('Something went wrong!'));
-
-
-
+            .catch((e) =>
+            swal("Something went wrong", "", "error"));
+            // alert('Something went wrong!'));
     }
 
     
@@ -83,9 +85,6 @@ export default function Products(){
                         }}>
 
                        <div className="d-flex flex-column col-5">
-                            <div className="text-center">
-                                    <p className="small"><Link className="text-decoration-none text-white" to="/">Home </Link> /Products</p>
-                            </div>
                             <h3 className="text-center">Find your perfect pet and<br/>livestock</h3>
                             <div className=" d-flex">
                             <input onChange={(e)=>{setSearchQuery(e.target.value);}} value={searchQuery} placeholder="Search Products . . ." className="form-control ms-2" style ={{borderRadius:"5px 0px 0px 5px"}}/>
@@ -104,13 +103,6 @@ export default function Products(){
                                 return (
 
                                     <CollapsibleUI onCartClick={(productId) => {
-                                        // if (JSON.parse(localStorage.getItem("hamroVet-token"))) {
-                                        //     setCartOpen(true);
-                                        //     setMenuId(menuId);
-                                        // }
-                                        // else {
-                                        //     alert('Please login to add to cart!');
-                                        // }
                                     }} index={index} cat={cat} product={products.filter((m, index) => m.catId == cat.id)} />
                                 );
                             }

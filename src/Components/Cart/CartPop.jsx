@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Modal } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { baseUrl } from "../baseUrl";
+import swal from 'sweetalert';
 
 export default function CartPop(props) {
     const [quantity, setQuantity] = useState(1);
@@ -18,11 +19,13 @@ export default function CartPop(props) {
             .then(res => res.json())
             .then((data) => {
                 if (data) {
-                    alert('Cart Added Successful!')
+                    swal("Item added to cart", "", "success");
+                    // alert('Cart Added Successful!')
                     props.onClose();
                 }
                 else {
-                    alert('Add to cart failed!')
+                    swal("Something went wrong", "", "error");
+                    // alert('Add to cart failed!')
                 }
             })
 

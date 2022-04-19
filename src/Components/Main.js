@@ -24,8 +24,8 @@ function Main(props) {
     function PageNotFound(props) {
 
         return (
-            <div className="vh-100 vw-100 d-flex flex-wrap justify-content-center align-items-center">
-                <p className="fs-4 fw-bold">{props.title}</p>
+            <div className="vh-100 vw-100 d-flex flex-wrap justify-content-center align-items-center bg-primary">
+                <p className="fs-4 fw-bold text-white">{props.title}</p>
             </div>
         );
     }

@@ -4,14 +4,21 @@ import { BsArrowLeft } from 'react-icons/bs'
 import { baseUrl } from '../baseUrl';
 import CartItemDeletepop from './CartItemDeletepop';
 import Individual from './Individual';
+import  {createNotification}  from '../Shared/createNotification';
+import swal from 'sweetalert'; 
+import PaymentModal from './Payment';
+
+
 export default function Cart() {
   const [quantity, setQuantity] = useState(1);
   const [cartItem, setCartItem] = useState([]);
   const [cartItemPop,setCartItemPop] = useState(false);
   const [ cartId, setCartId] = useState();
+  const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
   useEffect(()=>{
     fetchMyCart();
+    createNotification("success","cart");
   },[]);
 
   const fetchMyCart = async () => {
@@ -24,12 +31,38 @@ export default function Cart() {
       .then(res => res.json())
       .then(res => {
         if (res === false) {
-          alert('Something went wrong')
+          swal("Something went wrong","","error");
+          // alert('Something went wrong')
         } else {
+          console.log(res);
           setCartItem(res)
         }
       })
 
+  }
+
+  const makeOrder = async()=>{
+
+    var formData =  new FormData();
+    formData.append('customerId',JSON.parse(localStorage.getItem('hamrovet-token')).customerId);
+    await fetch(baseUrl + 'orders/makeOrder.php',{
+      method:"POST",
+      body:formData
+    })
+    .then(res=>res.json())
+    .then(res=>{
+      if(res === true){
+        fetchMyCart();
+        // createNotification("success","order");
+        swal("Order placed successfully","","success");
+        // alert('Order Placed Successfully');
+        window.location.href = '/order';
+      }
+      else{
+        swal("Something went wrong","","error");
+        // alert('Something went wrong');
+      }
+    })
   }
 
   return <div>
@@ -38,17 +71,15 @@ export default function Cart() {
         <div
           className="d-flex flex-wrap justify-content-center align-items-center text-white"
           style={{
-            height: "40vh",
+            height: "50vh",
             width: "100vw",
-            backgroundImage: 'url("https://images.unsplash.com/photo-1446018944197-6dcd4ccf2711?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZG9tZXN0aWMlMjBhbmltYWwlMjBiYWNrZ3JvdW5kfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60")',
+            backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 20%, rgba(100, 51, 51, 0.6) 86%, rgba(51, 51, 51, 0.8) 100%),url("https://images.unsplash.com/photo-1478098711619-5ab0b478d6e6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzR8fGRvbWVzdGljJTIwYW5pbWFsc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60")',
             backgroundColor: "#cccccc",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
-
-
           }}>
-
+            <h4 style={{fontFamily:"Helvetica-Neue"}}>"Our Product,Expectation of Customer"</h4>
         </div>
 
 
@@ -70,7 +101,7 @@ export default function Cart() {
               <div className='col-md-11 border border-dark p-4' style={{ backgroundColor: '#fff', borderRadius: "25px 0px 0px 25px"}}>
                 <div className='d-flex justify-content-between pb-3 border-bottom'>
                   <div> <h3><b>Shopping Cart</b></h3></div>
-                  <div><p>No of items:&nbsp;{cartItem.length}</p></div>
+                  <div><p><b>No of items:</b>&nbsp;{cartItem.length}</p></div>
                 </div>
                 <div className=''>
 
@@ -100,7 +131,7 @@ export default function Cart() {
                     <div className='d-flex justify-content-between'>
                       <div className='m-1'><p>No of items:&nbsp;{cartItem.length}</p></div>
                     </div >
-                    <div className='m-1'>Initial Price</div>
+                    <div className='m-1'>Initial Price: {cartItem.length > 0 ? cartItem.length ===1 ?parseInt(cartItem[0].Price) * parseInt(cartItem[0].productquantity) : cartItem.reduce((a,b)=>(parseInt(a.Price)*parseInt(a.productquantity))+(parseInt(b.Price)*parseInt(b.productquantity))):""}</div>
                   </div>
                   <div>
                     <div className='border-bottom border-dark'>
@@ -111,13 +142,18 @@ export default function Cart() {
                 </div>
                 <div className='d-flex justify-content-between pt-2'>
                   <p>Final Price</p>
-                  <p>100</p>
+                  <p>{cartItem.length > 0 ? cartItem.length ===1 ?parseInt(cartItem[0].Price) * parseInt(cartItem[0].productquantity) : cartItem.reduce((a,b)=>(parseInt(a.Price)*parseInt(a.productquantity))+(parseInt(b.Price)*parseInt(b.productquantity))):""}</p>
+                </div>
+                
+                <div className='p-2'>
+                  <button onClick={()=>{
+                      makeOrder();
+                  }} className='btn btn-dark' style={{ width: '100%' }} >Cash On Delivery</button>
                 </div>
                 <div className='p-2'>
-                  <button className='btn btn-dark' style={{ width: '100%' }}>Online Payment</button>
-                </div>
-                <div className='p-2'>
-                  <button className='btn btn-dark' style={{ width: '100%' }}>Pay on Delivery</button>
+                  <button onClick={()=>{
+                    setOpenPaymentModal(true);
+                  }} className='btn btn-dark' style={{ width: '100%' }}>Pay Online</button>
                 </div>
               </div>
             </div>
@@ -126,6 +162,6 @@ export default function Cart() {
         </section>
       </div>
     </div>
-
+    <PaymentModal open={openPaymentModal} onClosePress={() => { setOpenPaymentModal(false) }} onPaymentSuccess={() => { makeOrder(); }} />
   </div>;
 }

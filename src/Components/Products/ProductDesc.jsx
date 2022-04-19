@@ -5,6 +5,7 @@ import {
 import { baseUrl } from "../baseUrl";
 import * as FaIcons from 'react-icons/fa';
 import CartPop from '../Cart/CartPop';
+import swal from 'sweetalert';
 
 export default function ProductDesc({ id }) {
 
@@ -26,7 +27,9 @@ export default function ProductDesc({ id }) {
 
                 fetchRecommendedProductAPI(product[0].catId);
             })
-            .catch((e) => alert('Something went wrong!'));
+            .catch((e) => 
+            swal("Something went wrong", "", "error"));
+            // alert('Something went wrong!'));
 
 
 
@@ -46,7 +49,9 @@ export default function ProductDesc({ id }) {
             .then((res) => {
                 setRecommendedProduct(res.filter((p) => p.id !== id));
             })
-            .catch((e) => alert('Something went wrong!'));
+            .catch((e) => 
+            swal("Something went wrong", "", "error"));
+            // alert('Something went wrong!'));
     }
     return (
         <div>
@@ -86,7 +91,7 @@ export default function ProductDesc({ id }) {
 
                             <p className="fs-2 accent-color">{product.name}</p>
                             <p>{product.status}</p>
-                            <p className='text-justify'>{product.description}</p>
+                            <p style={{textAlign:"justify"}} >{product.description}</p>
                             <div>
                                 <p className="fs-2" style={{ color: "#4caf50" }}> NRs {product.price}</p>
                                 <button className="btn btn-primary" style={{ borderRadius: "60px" }} onClick={() => { setCartPopOpen(true); setProductId(product.id);}}><FaIcons.FaCartPlus /> Add to Cart</button>

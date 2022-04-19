@@ -20,7 +20,7 @@ function FeaturedCarousel(props){
                     />
                     <Carousel.Caption className="text-align-center">
                         <h3>Free Shipping</h3>
-                        <p>We will ship the product directly at your home on order above a lakh</p>
+                        <p>We will ship the product directly at your home</p>
                     </Carousel.Caption>
                 
                 </Carousel.Item>

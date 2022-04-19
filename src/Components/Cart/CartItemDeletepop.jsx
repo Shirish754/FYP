@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { baseUrl } from "../baseUrl";
+import swal from 'sweetalert';
+
 
 export default function CartItemDeletepop(props) {
 
@@ -16,7 +18,8 @@ export default function CartItemDeletepop(props) {
             .then(res => res.json())
             .then(res => {
               if (res === false) {
-                alert('Something went wrong')
+                swal("Something went wrong","","error");
+                // alert('Something went wrong')
               } else {
                 props.onDeleted();
               }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ListGroup } from "react-bootstrap";
 import { baseUrl } from "../baseUrl";
 import CartItemDeletepop from "./CartItemDeletepop";
+import swal from 'sweetalert';
 
 function Individual(props){
     const [quantity,setQuantity]=useState(1);
@@ -28,7 +29,8 @@ function Individual(props){
           .then(res => res.json())
           .then(res => {
             if (res === false) {
-              alert('Something went wrong')
+              swal("Something went wrong","","error");
+              // alert('Something went wrong')
             } else {
               props.onEdited();
               setQuantity(quantity.toString());
@@ -41,7 +43,7 @@ function Individual(props){
         return (
             <ListGroup horizontal className='border-bottom p-3'>
                 <ListGroup.Item style={{ width: '20%' }} className='border-0 '> <img src={baseUrl+props.item.Image} alt="Cart image" style={{ height: "50px", width: "50px", objectFit:"cover" }} /></ListGroup.Item>
-                <ListGroup.Item style={{ width: '25%' }} className='border-0 d-flex flex-column align-items-start '>
+                <ListGroup.Item style={{ width: '20%' }} className='border-0 d-flex flex-column align-items-start '>
                 <p className='text-muted mb-0 d-flex align-items-start'><b>{props.item.CatName}</b></p>
                 <p className='mb-0 d-flex align-items-start'><b>{props.item.ProductName}</b></p>
                 </ListGroup.Item>
@@ -52,7 +54,7 @@ function Individual(props){
                     <button type="button" className='w-50 m-1 border-0' style={{ backgroundColor: 'transparent' }} disabled={quantity>=1000} onClick={() => { editCart(parseInt(quantity)+1) }}>+</button>
                 </div>
                 </ListGroup.Item>
-                <ListGroup.Item style={{ width: '15%' }} className='border-0 d-flex align-items-center '>Rs. {parseInt(props.item.Price)*parseInt(quantity)}</ListGroup.Item>
+                <ListGroup.Item style={{ width: '15%' }} className='border-0 d-flex align-items-center text-success'>Rs. {parseInt(props.item.Price)*parseInt(quantity)}</ListGroup.Item>
                 <ListGroup.Item style={{ width: '15%' }} className='border-0 d-flex align-items-center'><button className='btn btn-danger' onClick={() => { setCartItemPop(true); setCartId(props.item.cartId)}}>X</button></ListGroup.Item>
                 <CartItemDeletepop id={cartId} open={cartItemPop} onClose={() => { setCartItemPop(false) }}  onDeleted = {()=>{props.onEdited(); setCartItemPop(false)}}/>
             </ListGroup>

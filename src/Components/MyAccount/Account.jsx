@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AccountPop from './AccountPop';
 import ChangePasswordPop from './ChangePasswordPop';
 import { baseUrl } from "../baseUrl";
+import swal from 'sweetalert';
 
 export default function Account(props) {
   const [isEmail, setisEmail]=useState();
@@ -42,17 +43,20 @@ export default function Account(props) {
   .then(res => {
     console.log(res);
       if (res.updated === 'true') {
-        alert('Profile updated successfully!');
+        swal("Account Updated Successfully","","success");
+        // alert('Profile updated successfully!');
         localStorage.setItem('hamrovet-token',JSON.stringify(res))
         
         window.location.reload();
     }
     else {
-        alert('Something went wrong!');
+      swal("Oops!", "Something went wrong!", "error");
+        // alert('Something went wrong!');
     }
   })
   .catch(e => {
-    alert('Something went wrong!');
+    swal("Oops!", "Something went wrong!", "error");
+    // alert('Something went wrong!');
   })
   }
 
@@ -76,9 +80,11 @@ export default function Account(props) {
         setisConfirmPassword("");
         setisPassword("");
         setEditPassword(false);
-          alert('Password Changed Successfully');
+        swal("Password changed successfully","","success");
+          // alert('Password Changed Successfully');
       }else{
-        alert('Something went wrong');
+        swal("Oops!", "Something went wrong!", "error");
+        // alert('Something went wrong');
       }
     })
     .catch((e)=>console.log(e.message));
@@ -91,7 +97,7 @@ export default function Account(props) {
                     <div
                         className="d-flex flex-wrap col-12 justify-content-center align-items-center text-white"
                         style={{
-                            height: "35vh",
+                            height: "50vh",
                             width: "100vw",
                             position:"relative",
                             backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 10%, rgba(50, 51, 51, 0.6) 86%, rgba(51, 51, 25, 0.8) 100%),url("https://images.pexels.com/photos/8673633/pexels-photo-8673633.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500")',
@@ -101,14 +107,14 @@ export default function Account(props) {
                             backgroundSize: "cover",
                         }}>
                         <div className="text-center">
-                            <h1 className="small"><Link className="text-decoration-none text-white" to="/">Home </Link> /My Account</h1>
+                            <h1 className="small"><b><Link className="text-decoration-none text-white" to="/">Home </Link> /My Account</b></h1>
                         </div>
                         
                     </div>
                 </div>
     <section className='p-5'>
       
-      <div className='mt-5'>
+      <div className='mt-2'>
         <div className='border border-black d-flex flex-wrap flex-column justify-content-center'>
           <h2 className='d-flex flex-wrap justify-content-around border-bottom p-2'>Account details</h2>
           <div className='d-flex flex-wrap justify-content-around align-items-center '>
@@ -159,7 +165,7 @@ export default function Account(props) {
 
                   <div class="form-group row">
                     <div class="col-sm-10 d-flex align-items-center justify-content-center">
-                      <button type="button" class="btn btn-primary m-2" onClick={()=>{setEditAccount(true)}}>Edit Account</button>
+                      <button type="button" class="btn btn-primary m-2" onClick={()=>{setEditAccount(true)}}  disabled={isEmail !== "" && isUserName !== ""  && isAddress !== "" && isContact !== "" ? false : true}>Edit Account</button>
                       <AccountPop open={editAccount} onClose={() => { setEditAccount(false) }}/>
                     </div>
                   </div>
@@ -196,12 +202,13 @@ export default function Account(props) {
                         <label for="inputPassword3" class=" col-sm-2 col-form-label">Confirm&nbsp;Password</label>
                         <div class="col-sm-12 col-md-9 col-lg-8">
                           <input value={isConfirmPassword} onChange={(e)=>{setisConfirmPassword(e.target.value);}} type="password" class="form-control m-1" id="inputPassword3" placeholder="********"/>
+                          <p className={`small text-danger ${isNewPassword !== "" && isConfirmPassword !== "" && isNewPassword !== isConfirmPassword ? '' : 'd-none'}`}>Password doesn't match!</p>
                         </div>
                       </div>
 
                       <div class="form-group row">
                         <div class="d-flex justify-content-center">
-                          <button type="submit" class="btn btn-danger m-3 " onClick={()=>{setEditPassword(true)}}>Change&nbsp;Password</button>
+                          <button type="submit" class="btn btn-danger m-3 " onClick={()=>{setEditPassword(true)}} disabled={isPassword !== "" && isNewPassword !== ""  && isConfirmPassword !== "" && isNewPassword === isConfirmPassword ? false : true}>Change&nbsp;Password</button>
                           <ChangePasswordPop changePassword={()=>{changePassword();}} open={editPassword} onClose={() => { setEditPassword(false)}} />
                         </div>
                       </div>
