@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
     Switch,
     Route,
@@ -12,14 +12,9 @@ import ProductDesc from "./Products/ProductDesc";
 import Cart from "./Cart/Cart";
 import Account from "./MyAccount/Account";
 import Order from "./Orders/Order";
-import { baseUrl } from "./baseUrl";
 
 
 function Main(props) {
-
-
-
-
 
     function PageNotFound(props) {
 

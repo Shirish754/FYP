@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Alert, ListGroup, ListGroupItem } from "react-bootstrap";
-import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { baseUrl } from "../baseUrl";
 import { Table } from 'reactstrap';
-import DeleteOrders from "./DeleteOrders";
 import swal from 'sweetalert';
 
 function Order(props){
 
     const [orders, setOrders] = useState();
-    const [deleteOrder, setDeleteOrder] = useState(false);
-    const [Pstatus, setPstatus] = useState(false);
     
 
 
@@ -76,6 +71,7 @@ function Order(props){
                             marginTop: '20px',
 
                             }}>
+                               
                             {orders && orders.reverse().map((order, index)=>{
                                 
                                 return(

@@ -1,24 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import ListGroup from 'react-bootstrap/ListGroup'
 import { BsArrowLeft } from 'react-icons/bs'
 import { baseUrl } from '../baseUrl';
-import CartItemDeletepop from './CartItemDeletepop';
 import Individual from './Individual';
-import  {createNotification}  from '../Shared/createNotification';
 import swal from 'sweetalert'; 
 import PaymentModal from './Payment';
 
 
 export default function Cart() {
-  const [quantity, setQuantity] = useState(1);
   const [cartItem, setCartItem] = useState([]);
-  const [cartItemPop,setCartItemPop] = useState(false);
-  const [ cartId, setCartId] = useState();
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
   useEffect(()=>{
     fetchMyCart();
-    createNotification("success","cart");
   },[]);
 
   const fetchMyCart = async () => {
@@ -41,10 +34,13 @@ export default function Cart() {
 
   }
 
-  const makeOrder = async()=>{
+  const makeOrder = async(paid = false)=>{
 
     var formData =  new FormData();
     formData.append('customerId',JSON.parse(localStorage.getItem('hamrovet-token')).customerId);
+    if(paid){
+      formData.append('payment',true);
+    }
     await fetch(baseUrl + 'orders/makeOrder.php',{
       method:"POST",
       body:formData
@@ -146,12 +142,12 @@ export default function Cart() {
                 </div>
                 
                 <div className='p-2'>
-                  <button onClick={()=>{
+                  <button disabled={cartItem.length <= 0} onClick={()=>{
                       makeOrder();
                   }} className='btn btn-dark' style={{ width: '100%' }} >Cash On Delivery</button>
                 </div>
                 <div className='p-2'>
-                  <button onClick={()=>{
+                  <button disabled={cartItem.length <= 0}  onClick={()=>{
                     setOpenPaymentModal(true);
                   }} className='btn btn-dark' style={{ width: '100%' }}>Pay Online</button>
                 </div>
@@ -162,6 +158,6 @@ export default function Cart() {
         </section>
       </div>
     </div>
-    <PaymentModal open={openPaymentModal} onClosePress={() => { setOpenPaymentModal(false) }} onPaymentSuccess={() => { makeOrder(); }} />
+    <PaymentModal open={openPaymentModal} onClosePress={() => { setOpenPaymentModal(false) }} onPaymentSuccess={() => { makeOrder(true); }} />
   </div>;
 }

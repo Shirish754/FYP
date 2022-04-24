@@ -10,6 +10,7 @@ import * as FaIcons from "react-icons/fa";
 import Login from "../Login/Login";
 import Signup from "../Login/Signup";
 import LogOut from "../Login/LogOut";
+import { BsWindowSidebar } from "react-icons/bs";
 
 
 function NavbarUI(props){
@@ -50,7 +51,7 @@ function NavbarUI(props){
                             <NavDropdown.Item href=""><Link to="/Cart" className="text-black my-auto  text-decoration-none"><IoIcons.IoMdCart/> Cart</Link> </NavDropdown.Item>
                             <NavDropdown.Item href=""><Link to="/Order" className="text-black my-auto  text-decoration-none"><FaIcons.FaBimobject/> Orders</Link> </NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item className="text-danger" href="" onClick={() => { setIsLogOut(true);  }}>
+                            <NavDropdown.Item className="text-danger" href="" onClick={() => { setIsLogOut(true);   }}>
                                 <RiIcons.RiLogoutBoxRLine/>LogOut
                             </NavDropdown.Item>
                         </NavDropdown>
@@ -66,7 +67,7 @@ function NavbarUI(props){
                 </Navbar>
                 <Login open={isLoginOpen} onClose={() => { setIsLoginOpen(false) }} onSignupClick={() => { setIsLoginOpen(false); setIsSignupOpen(true); }} />
                 <Signup open={isSignupOpen} onClose={() => { setIsSignupOpen(false) }} onLoginClick={() => { setIsSignupOpen(false); setIsLoginOpen(true); }} />
-                <LogOut open={isLogOut} onClose={() => { setIsLogOut(false) }} />
+                <LogOut open={isLogOut} onClose={() => { setIsLogOut(false); }}  />
             </div>
         );
     }
