@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
+import swal from 'sweetalert';
 
 export default function PaymentModal(props) {
 
@@ -12,7 +13,8 @@ export default function PaymentModal(props) {
     const khaltiPaymentInitialize = () => {
 
         if (mobile.length !== 10) {
-            alert('Mobile number should be of 10 digits');
+            swal("Mobile number should be of 10 digits", "", "error");
+            // alert('Mobile number should be of 10 digits');
         }
         else {
             fetch("https://api.shirishpokhrel.com.np/initializeKhalti.php", {
@@ -21,14 +23,18 @@ export default function PaymentModal(props) {
                     mobile: mobile,
                     transaction_pin: transaction_pin,
                     amount: 1000,
-                    product_identity: "Tour",
-                    product_name: "Booking"
+                    product_identity: "Animal",
+                    product_name: "Order"
                 })
             })
                 .then((res) => res.json())
                 .then((response) => {
-                    console.log(response);
+                    if(response.error_key){
+                        props.onClosePress();
+                    alert( "Something went wrong");
+                    }else{
                     setToken(response.token);
+                    }
                 })
                 .catch(e => {
                     props.onClosePress();
@@ -51,8 +57,13 @@ export default function PaymentModal(props) {
         })
             .then((res) => res.json())
             .then((response) => {
+                if(response.error_key){
+                alert( "Something went wrong");
+
+                }else{
                 console.log(response);
                 khaltiPaymentVerify(response.token);
+                }
             })
             .catch(e => {
                 props.onClosePress();

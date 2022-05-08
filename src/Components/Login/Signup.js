@@ -71,7 +71,7 @@ function Signup(props){
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Contact</label>
-                        <input type="text" className="form-control" placeholder="Contact" value={contact} onChange={(e) => { setContact(e.target.value) }} />
+                        <input type="number" className="form-control" placeholder="Contact" value={contact} onChange={(e) => { setContact(e.target.value) }} />
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Address</label>

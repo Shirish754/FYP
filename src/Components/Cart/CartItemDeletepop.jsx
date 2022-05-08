@@ -31,7 +31,7 @@ export default function CartItemDeletepop(props) {
     <div>
         <Modal show={props.open} onHide={() => { props.onClose() }} centered>
             <Modal.Header closeButton>
-                <Modal.Title>Are you Sure ? {props.id}</Modal.Title>
+                <Modal.Title>Are you Sure ?</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form onSubmit={deleteFromCart}>

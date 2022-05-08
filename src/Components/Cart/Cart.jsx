@@ -50,9 +50,11 @@ export default function Cart() {
       if(res === true){
         fetchMyCart();
         // createNotification("success","order");
-        swal("Order placed successfully","","success");
+        swal("Order placed successfully","","success").then(()=>{
+          window.location.href = '/order';
+        });
         // alert('Order Placed Successfully');
-        window.location.href = '/order';
+        // window.location.href = '/order';
       }
       else{
         swal("Something went wrong","","error");
@@ -127,7 +129,10 @@ export default function Cart() {
                     <div className='d-flex justify-content-between'>
                       <div className='m-1'><p>No of items:&nbsp;{cartItem.length}</p></div>
                     </div >
-                    <div className='m-1'>Initial Price: {cartItem.length > 0 ? cartItem.length ===1 ?parseInt(cartItem[0].Price) * parseInt(cartItem[0].productquantity) : cartItem.reduce((a,b)=>(parseInt(a.Price)*parseInt(a.productquantity))+(parseInt(b.Price)*parseInt(b.productquantity))):""}</div>
+                    <div className='m-1'>Initial Price:  
+                    {cartItem.length > 0 ? cartItem.length ===1 ?(parseInt(cartItem[0].Price) * parseInt(cartItem[0].productquantity)) : cartItem.reduce((a,b)=>a+(parseInt(b.Price)*parseInt(b.productquantity)),0):""}
+                    
+                    </div>
                   </div>
                   <div>
                     <div className='border-bottom border-dark'>
@@ -138,7 +143,9 @@ export default function Cart() {
                 </div>
                 <div className='d-flex justify-content-between pt-2'>
                   <p>Final Price</p>
-                  <p>{cartItem.length > 0 ? cartItem.length ===1 ?parseInt(cartItem[0].Price) * parseInt(cartItem[0].productquantity) : cartItem.reduce((a,b)=>(parseInt(a.Price)*parseInt(a.productquantity))+(parseInt(b.Price)*parseInt(b.productquantity))):""}</p>
+                  <p>
+                  {cartItem.length > 0 ? cartItem.length ===1 ?(parseInt(cartItem[0].Price) * parseInt(cartItem[0].productquantity)) : cartItem.reduce((a,b)=>a+(parseInt(b.Price)*parseInt(b.productquantity)),0):""}
+                    </p>
                 </div>
                 
                 <div className='p-2'>
