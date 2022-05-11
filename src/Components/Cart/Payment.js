@@ -31,7 +31,9 @@ export default function PaymentModal(props) {
                 .then((response) => {
                     if(response.error_key){
                         props.onClosePress();
-                    alert( "Something went wrong");
+                    //     swal(response.error_key, "", "error");
+                    // alert( "Wrong Transaction Pin");
+                    swal("Wrong Transaction Pin", "", "error");
                     }else{
                     setToken(response.token);
                     }
@@ -58,7 +60,8 @@ export default function PaymentModal(props) {
             .then((res) => res.json())
             .then((response) => {
                 if(response.error_key){
-                alert( "Something went wrong");
+                alert( "Invalid OTP");
+                swal("Invalid OTP", "", "error");
 
                 }else{
                 console.log(response);
